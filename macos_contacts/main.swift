@@ -14,12 +14,12 @@ if CommandLine.argc < 2 {
 } else {
     let store = CNContactStore()
     let contacts = try store.unifiedContacts(matching: CNContact.predicateForContacts(matchingName: CommandLine.arguments[1]), keysToFetch:[CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactEmailAddressesKey as CNKeyDescriptor])
-    print("Found \(contacts.count) match(es)")
+    print("Found \(contacts.count) Contacts")
     for contact in contacts {
         // Checking if phone number is available for the given contact.
         if (contact.isKeyAvailable(CNContactEmailAddressesKey)) {
             for emailAddress:CNLabeledValue in contact.emailAddresses {
-                print("\(emailAddress.value)    \(contact.givenName) \(contact.familyName)")
+                print("\(emailAddress.value)\t\(contact.givenName) \(contact.familyName)")
             }
         }
     }
